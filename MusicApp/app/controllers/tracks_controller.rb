@@ -2,6 +2,7 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
+    render :show
   end
 
   def new
@@ -18,6 +19,20 @@ class TracksController < ApplicationController
     end
   end
 
+  def edit
+    @track = Track.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @track = Track.update(track_params)
+    if @track.save
+      render :show
+    else
+      flash[:errors] = ["Error! Nothing updated!"]
+      render :new
+    end
+  end
 
 
   private

@@ -1,0 +1,6 @@
+<h4>Comments</h4>
+
+<% @track.notes.each do |note| %>
+  <%= note.body %>
+  <%= note.user.email %>
+<% end %>

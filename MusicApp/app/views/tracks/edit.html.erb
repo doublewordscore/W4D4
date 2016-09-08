@@ -1,0 +1,38 @@
+<h3>Edit Track to Database:</h3>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+<% end %>
+
+<form action="<%=track_url%>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+  <label for="name" name="name">Track Name:</label>
+  <input type="text" name="track[name]" value="<%=@track.name %>" id="name">
+  <br><br>
+
+  <label for="album_id" id="album">Album</label>
+  <select name="track[album_id]" id="album">
+    <% Album.all.each do |album| %>
+      <option value="<%=album.id %>"><%=album.name %></option>
+    <% end %>
+  </select>
+  <br><br>
+
+  Style:
+  <input type="radio" name="track[bonus]" id="bonus" value="<%=true %>">
+  <label for="bonus">Bonus Track</label>
+
+  <input type="radio" name="track[bonus]" id="regular" value="<%=false %>">
+  <label for="regular">Regular Track</label>
+  <br><br>
+
+  <label for="lyrics">Lyrics:</label>
+  <textarea name="track[lyrics]" id="lyrics" cols="50" rows="10"></textarea>
+  <br>
+
+  <input type="submit" value="Submit">
+</form>

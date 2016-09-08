@@ -13,6 +13,10 @@
 
 class Track < ActiveRecord::Base
 
-  belongs_to :album 
+  belongs_to :album
 
+  has_many :notes,
+  class_name: 'Note',
+  foreign_key: :track_id,
+  primary_key: :id
 end

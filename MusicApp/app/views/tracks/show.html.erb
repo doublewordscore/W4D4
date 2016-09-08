@@ -1,6 +1,26 @@
 <h3><%= @track.name %></h3>
 <h4>Lyrics</h4>
 
-
+<%= link_to "Edit Track", edit_track_url %>
 <%= link_to "Back to Album", album_url(@track.album.id) %> ||
 <%= link_to "Back to Band Directory", bands_url %>
+
+
+<h3>Comments</h3>
+<% @track.notes.each do |note| %>
+  <p><%= note.body %>
+  <br><font size="2"><%= note.user.email %>
+  <br><%= note.created_at %></font></p>
+<% end %>
+
+
+<h3>Add New Comment</h3>
+
+<form action="<%=notes_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+  <input type="hidden" name="note[track_id]" value="<%= @track.id %>">
+  <label for="notes">Comment:</label>
+  <textarea name="note[body]" id="notes" cols="50" rows="10"></textarea>
+  <br>
+  <input type="submit" value="Submit Comment">
+</form>
