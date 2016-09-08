@@ -1,0 +1,30 @@
+<h3>Create Album in the Database:</h3>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+<% end %>
+
+<form action="<%=albums_url%>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+  <label for="name" name="name">Album Name:</label>
+  <input type="text" name="album[name]"  id="name">
+
+  <label for="band_id" id="band">Band</label>
+  <select name="album[band_id]" id="band">
+    <% Band.all.each do |band| %>
+      <option value="<%=band.id %>"><%=band.name %></option>
+    <% end %>
+  </select>
+
+  <input type="radio" name="album[live_recording]" id="live" value="<% true %>"
+  <label for="live">Live Recording</label>
+  <br>
+  <input type="radio" name="album[live_recording]" id="studio" value="<% false %>"
+  <label for="studio">Studio Recording</label>
+  <br>
+
+  <input type="submit" value="Submit">
+</form>
