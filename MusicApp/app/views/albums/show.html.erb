@@ -1,0 +1,12 @@
+<h3><%= @album.name %></h3>
+
+<ul>
+  <% @album.tracks.each do |track| %>
+    <li><%= link_to "#{track.name}", track_url(track) %></li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Add New Track", new_track_url %> ||
+<%= link_to "Back to Artist", band_url(@album.band.id) %> ||
+<%= link_to "Back to Band Directory", bands_url %>

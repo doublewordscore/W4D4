@@ -2,10 +2,11 @@
 
 <ul>
   <% @band.albums.each do |album| %>
-    <li><i><%= album.name %></i></li>
+    <li><i><%= link_to "#{album.name}", album_url(album) %></i></li>
   <% end %>
 </ul>
 
 
 <%= link_to "Add New Album", new_album_url %> ||
+<%= link_to "Edit Band", edit_band_url %> ||
 <%= link_to "Back to List of Artists", bands_url %>

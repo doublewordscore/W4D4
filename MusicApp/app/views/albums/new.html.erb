@@ -11,6 +11,7 @@
 
   <label for="name" name="name">Album Name:</label>
   <input type="text" name="album[name]"  id="name">
+  <br><br>
 
   <label for="band_id" id="band">Band</label>
   <select name="album[band_id]" id="band">
@@ -18,13 +19,15 @@
       <option value="<%=band.id %>"><%=band.name %></option>
     <% end %>
   </select>
+  <br><br>
 
-  <input type="radio" name="album[live_recording]" id="live" value="<% true %>"
+  Style:
+  <input type="radio" name="album[live_recording]" id="live" value="<%=true %>">
   <label for="live">Live Recording</label>
-  <br>
-  <input type="radio" name="album[live_recording]" id="studio" value="<% false %>"
+
+  <input type="radio" name="album[live_recording]" id="studio" value="<%=false %>">
   <label for="studio">Studio Recording</label>
-  <br>
+  <br><br>
 
   <input type="submit" value="Submit">
 </form>
